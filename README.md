@@ -2,7 +2,7 @@
 
 Project ini berisi automated API testing menggunakan Playwright untuk menguji REST API dari [ReqRes.in](https://reqres.in/).
 
-## 📋 Prerequisites
+## Prerequisites
 
 Pastikan sistem Anda sudah terinstall:
 - **Node.js** (versi 18 atau lebih baru)
@@ -42,7 +42,7 @@ API_KEY=your_api_key_here
 
 > **Note**: API_KEY diperlukan jika API memerlukan authentication. Untuk ReqRes.in, API key bersifat opsional.
 
-## 📁 Struktur Project
+## Struktur Project
 
 ```
 playwright_qe_test/
@@ -56,7 +56,7 @@ playwright_qe_test/
 └── package.json            # Project dependencies
 ```
 
-## 🧪 Test Cases
+## Test Cases
 
 Project ini mencakup 7 test cases yang menguji berbagai endpoint API:
 
@@ -142,7 +142,7 @@ npx playwright test -g "get user detail by id"
 npx playwright test --debug
 ```
 
-## 📊 View Test Reports
+## View Test Reports
 
 Setelah test selesai dijalankan, Anda dapat melihat HTML report:
 
