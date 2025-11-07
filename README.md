@@ -9,7 +9,7 @@ Pastikan sistem Anda sudah terinstall:
 - **npm** (biasanya sudah terinstall bersama Node.js)
 - **Git** (untuk clone repository)
 
-## 🚀 Installation
+## Installation
 
 ### 1. Clone Repository
 ```bash
