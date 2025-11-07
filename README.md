@@ -1,13 +1,13 @@
 # Playwright API Testing - ReqRes API
 
-Project ini berisi automated API testing menggunakan Playwright untuk menguji REST API dari [ReqRes.in](https://reqres.in/).
+This project contains automated API testing using Playwright to test REST API from [ReqRes.in](https://reqres.in/).
 
 ## Prerequisites
 
-Pastikan sistem Anda sudah terinstall:
-- **Node.js** (versi 18 atau lebih baru)
-- **npm** (biasanya sudah terinstall bersama Node.js)
-- **Git** (untuk clone repository)
+Make sure your system has the following installed:
+- **Node.js** (version 18 or newer)
+- **npm** (usually comes with Node.js)
+- **Git** (to clone the repository)
 
 ## Installation
 
@@ -22,27 +22,27 @@ cd playwright_qe_test
 npm install
 ```
 
-Perintah ini akan menginstall:
-- `@playwright/test` - Framework testing Playwright
-- `dotenv` - Library untuk mengelola environment variables
-- `@types/node` - TypeScript type definitions untuk Node.js
+This command will install:
+- `@playwright/test` - Playwright testing framework
+- `dotenv` - Library for managing environment variables
+- `@types/node` - TypeScript type definitions for Node.js
 
 ### 3. Setup Environment Variables
 
-Buat file `.env` di root directory project:
+Create a `.env` file in the project root directory:
 ```bash
 touch .env
 ```
 
-Isi file `.env` dengan konfigurasi berikut:
+Fill the `.env` file with the following configuration:
 ```env
 BASE_URL=https://reqres.in/api
 API_KEY=your_api_key_here
 ```
 
-> **Note**: API_KEY diperlukan jika API memerlukan authentication. Untuk ReqRes.in, API key bersifat opsional.
+> **Note**: API_KEY is required if the API requires authentication. For ReqRes.in, API key is optional.
 
-## Struktur Project
+## Project Structure
 
 ```
 playwright_qe_test/
@@ -58,64 +58,64 @@ playwright_qe_test/
 
 ## Test Cases
 
-Project ini mencakup 7 test cases yang menguji berbagai endpoint API:
+API testing coverage:
 
 ### 1. **Get User Detail by ID**
 - **Endpoint**: `GET /users/2`
-- **Deskripsi**: Mengambil detail user dengan ID 2
-- **Validasi**: 
+- **Description**: Retrieve user details by ID
+- **Validation**: 
   - Status code 200
-  - Response memiliki property `data`
-  - User ID adalah 2
-  - Email user adalah `janet.weaver@reqres.in`
+  - Response has `data` property
+  - User ID is 2
+  - User email is `janet.weaver@reqres.in`
 
 ### 2. **Get Detail of Non-Existent User**
 - **Endpoint**: `GET /users/23`
-- **Deskripsi**: Mencoba mengambil user yang tidak ada
-- **Validasi**:
+- **Description**: Attempt to get details of a non-existent user
+- **Validation**:
   - Status code 404
-  - Response body kosong `{}`
+  - Empty response body `{}`
 
 ### 3. **Create User**
 - **Endpoint**: `POST /users`
-- **Deskripsi**: Membuat user baru dengan nama "morpheus" dan job "leader"
-- **Validasi**:
+- **Description**: Create a new user with name "morpheus" and job "leader"
+- **Validation**:
   - Status code 201
-  - Response memiliki nama dan job yang sesuai
-  - Response memiliki property `createdAt`
+  - Response has matching name and job
+  - Response has `createdAt` property
 
 ### 4. **Update User**
 - **Endpoint**: `PUT /users/2`
-- **Deskripsi**: Mengupdate data user dengan ID 2
-- **Validasi**:
+- **Description**: Update user data by ID
+- **Validation**:
   - Status code 200
-  - Nama berubah menjadi "claire"
-  - Job berubah menjadi "worker"
-  - Response memiliki property `updatedAt`
+  - Name changed to "claire"
+  - Job changed to "worker"
+  - Response has `updatedAt` property
 
 ### 5. **Delete User by ID**
 - **Endpoint**: `DELETE /users/2`
-- **Deskripsi**: Menghapus user dengan ID 2
-- **Validasi**:
+- **Description**: Delete user by ID
+- **Validation**:
   - Status code 204 (No Content)
 
 ### 6. **Register New User**
 - **Endpoint**: `POST /register`
-- **Deskripsi**: Registrasi user baru dengan email dan password yang valid
-- **Validasi**:
+- **Description**: Register a new user with valid email and password
+- **Validation**:
   - Status code 200
-  - Response memiliki property `id`
-  - Response memiliki property `token`
+  - Response has `id` property
+  - Response has `token` property
 
 ### 7. **Register User with Missing Password**
 - **Endpoint**: `POST /register`
-- **Deskripsi**: Negative test - registrasi tanpa password
-- **Validasi**:
+- **Description**: Negative test - registration without password
+- **Validation**:
   - Status code 400
-  - Response memiliki property `error`
-  - Error message adalah "Missing password"
+  - Response has `error` property
+  - Error message is "Missing password"
 
-## ▶️ Running Tests
+## Running Tests
 
 ### Run All Tests
 ```bash
@@ -137,31 +137,26 @@ npx playwright test tests/api.test.spec.ts
 npx playwright test -g "get user detail by id"
 ```
 
-### Run Tests with Debug Mode
-```bash
-npx playwright test --debug
-```
-
 ## View Test Reports
 
-Setelah test selesai dijalankan, Anda dapat melihat HTML report:
+After tests are completed, the HTML report can be viewed with the command:
 
 ```bash
 npx playwright show-report
 ```
 
-Report akan otomatis terbuka di browser dengan detail hasil test, screenshot (jika ada), dan trace.
+The report will automatically open in the browser with detailed test results.
 
 ## Configuration
 
-Konfigurasi Playwright dapat diubah di file `playwright.config.ts`:
+Playwright configuration can be modified in the `playwright.config.ts` file:
 
-- **testDir**: Directory tempat test files berada
-- **fullyParallel**: Menjalankan test secara parallel
-- **retries**: Jumlah retry jika test gagal
-- **reporter**: Format report (default: HTML)
-- **use.baseURL**: Base URL untuk API endpoint
-- **use.extraHTTPHeaders**: Header yang ditambahkan ke setiap request
+- **testDir**: Directory where test files are located
+- **fullyParallel**: Run tests in parallel
+- **retries**: Number of retries if test fails
+- **reporter**: Report format (default: HTML)
+- **use.baseURL**: Base URL for API endpoints
+- **use.extraHTTPHeaders**: Headers added to every request
 
 ## Troubleshooting
 
@@ -171,10 +166,10 @@ npm install dotenv
 ```
 
 ### Error: BASE_URL is undefined
-Pastikan file `.env` sudah dibuat dan berisi `BASE_URL=https://reqres.in/api`
+Make sure the `.env` file has been created and contains `BASE_URL=https://reqres.in/api`
 
 ### Tests failing with timeout
-Tambahkan timeout di `playwright.config.ts`:
+Add timeout in `playwright.config.ts`:
 ```typescript
 use: {
   timeout: 30000, // 30 seconds
